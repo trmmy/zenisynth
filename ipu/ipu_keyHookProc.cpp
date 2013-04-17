@@ -41,13 +41,19 @@ LRESULT CALLBACK IPU::keyHookProc(int nCode, WPARAM wp, LPARAM lp) {
             
             lua_pushinteger(IPU::getInstance().m_L,flags);
         }
-		
-        if(lua_pcall(IPU::getInstance().m_L,3,0,-5)) {
+
+        {
+            lua_pushinteger(IPU::getInstance().m_L, pDHStruct->flags&LLKHF_ALTDOWN ? 1 : 0);
+        }
+        if(lua_pcall(IPU::getInstance().m_L,4,1,-5)) {
             out("[SCRIPT ERROR]\n"<<lua_tostring(IPU::getInstance().m_L,-1));
+        } else if(lua_tointeger(IPU::getInstance().m_L, -1)){
+            LRESULT result = CallNextHookEx(IPU::getInstance().m_hHook, nCode,wp,lp);
+            IPU::getInstance().m_busy=false;
+            return result;			
         }
 
     }
-
     IPU::getInstance().m_busy=false;
     return true;
 

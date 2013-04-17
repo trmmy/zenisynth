@@ -1,4 +1,4 @@
-function main(vkCode,scanCode,flags)
+function main(vkCode,scanCode,flags,altdown)
 
 	sendInput(vkCode,scanCode,flags)
 

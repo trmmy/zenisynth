@@ -10,7 +10,7 @@ out("SX :: Synergistic eXtended")
 
 --a=cdata.new(10)
 
-function main(vkCode,scanCode,flags)
+function main(vkCode,scanCode,flags,altdown)
 
 	SX.acquire(vkCode,scanCode,flags)
 --out(scanCode)

@@ -10,7 +10,7 @@ out("SX :: Synergistic eXtended")
 
 --a=cdata.new(10)
 
-function main(vkCode,scanCode,flags)
+function main(vkCode,scanCode,flags,altdown)
 --out(vkCode)
 --out(scanCode)
 --out(".")

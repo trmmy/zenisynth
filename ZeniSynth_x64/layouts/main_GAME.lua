@@ -1,4 +1,4 @@
-function main(vkCode,scanCode,flags)
+function main(vkCode,scanCode,flags,altdown)
 
 	if scanCode==SC_NONCONVERT then
 		scanCode=SC_NUM0
