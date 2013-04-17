@@ -7,10 +7,8 @@ namespace VMFuncs
     {
         VMFunc(_out)
         {
-            CheckArg(1)
-            {
-                switch(lua_type(L,1))
-                {
+            CheckArg(1) {
+                switch(lua_type(L,1)) {
                 case LUA_TSTRING:
                     out(lua_tostring(L,1));
                     break;
@@ -39,8 +37,7 @@ namespace VMFuncs
 
         VMFunc(sendInput)
         {
-            CheckArg(2)
-            {
+            CheckArg(2) {
                 const WORD VK=static_cast<WORD>(lua_tonumber(L,1));
                 INPUT i;
 
@@ -49,21 +46,16 @@ namespace VMFuncs
                 ZeroMemory(&k,sizeof(k));
                 k.wVk=VK;
 
-
-                if(lua_gettop(L)==3)
-                {
+                if(lua_gettop(L)==3) {
                     k.wScan=static_cast<WORD>(lua_tointeger(L,2));
                     k.dwFlags=static_cast<WORD>(lua_tointeger(L,3));
-                }
-                else
-                {
+                } else {
                     k.dwFlags=static_cast<WORD>(KEYEVENTF_KEYUP*lua_toboolean(L,2));
                 }
 
                 i.ki=k;
 
                 SendInput(1,&i,sizeof(i));
-
 
             }
             return 0;

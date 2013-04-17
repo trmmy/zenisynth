@@ -4,8 +4,7 @@ namespace VMFuncs
 {
     namespace cdata
     {
-        VMFunc(_new)
-        {
+        VMFunc(_new) {
             int size=(int)lua_tointeger(L,1);
             int* newData=(int*)lua_newuserdata(L,4+size);
             newData[0]=size;
@@ -31,16 +30,16 @@ namespace VMFuncs
         VMFunc(rawGet)	//rawGet(ptr,size=4)
         {
             const void* const ptr=(void*)(lua_tointeger(L,1)+sizeof(int));
-            const int size=
-                2<=lua_gettop(L)	?
-                lua_tointeger(L,2)
-                :
-                4;
+            const int size
+                = 2<=lua_gettop(L)
+                ? lua_tointeger(L,2)
+                : 4;
 
             unsigned char actualData[4]={0,0,0,0};
-            for(int i=0;i<4;i++)
-            {
-                if(size<=i){break;}
+            for(int i=0;i<4;i++) {
+                if(size<=i){
+                    break;
+                }
                 actualData[i]=((unsigned char*)ptr)[i];
             }
             lua_pushinteger(L,*((int*)actualData));
@@ -51,15 +50,15 @@ namespace VMFuncs
         {
             unsigned char* const ptr=(unsigned char*)(lua_tointeger(L,1)+sizeof(int));
             const unsigned int actualData=lua_tointeger(L,2);
-            const int size=
-                3<=lua_gettop(L)	?
-                lua_tointeger(L,3)
-                :
-                4;
+            const int size
+                = 3<=lua_gettop(L)
+                ? lua_tointeger(L,3)
+                : 4;
 
-            for(int i=0;i<4;i++)
-            {
-                if(size<=i){break;}
+            for(int i=0;i<4;i++) {
+                if(size<=i){
+                    break;
+                }
                 ptr[i]=((unsigned char*)&actualData)[i];
             }
             return 1;

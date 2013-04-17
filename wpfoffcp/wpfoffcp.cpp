@@ -7,8 +7,7 @@
 
 typedef DWORD (WINAPI *PDISWFP)(DWORD dwA, WCHAR *szFile, DWORD dwB);
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     if(argc < 3){
         printf("%s [src file] [dest file]\n", argv[0]);
         return 1;
@@ -21,18 +20,26 @@ int main(int argc, char *argv[])
     PDISWFP pWfp = NULL; // function ptr
     
     try{
-        if((hMod = LoadLibraryA("sfc_os.dll")) == NULL)
+        if((hMod = LoadLibraryA("sfc_os.dll")) == NULL) {
             throw 1;
+        }
 
-        if((pWfp = (PDISWFP)GetProcAddress(hMod, (LPCSTR)5)) == NULL)
+        if((pWfp = (PDISWFP)GetProcAddress(hMod, (LPCSTR)5)) == NULL) {
             throw 2;
-
-        WCHAR wdestfile[1024];
-        MultiByteToWideChar(CP_ACP, 0, 
-                            destfile, -1, wdestfile, 1024 * sizeof(WCHAR));
+        }
         
-        if(pWfp(0, wdestfile, -1))
+        WCHAR wdestfile[1024];
+        MultiByteToWideChar(
+            CP_ACP,
+            0, 
+            destfile,
+            -1,
+            wdestfile,
+            1024 * sizeof(WCHAR));
+        
+        if(pWfp(0, wdestfile, -1)) {
             throw 3;
+        }
 
         CopyFileA(srcfile, destfile, FALSE);
         printf("Copy \"%s\" to \"%s\" successed!\n", srcfile, destfile);

@@ -3,10 +3,7 @@
 
 using namespace VMFuncs;
 
-
-
-void IPU::registerVMFunctions()
-{
+void IPU::registerVMFunctions() {
     lua_register(m_L,"out",general::_out);
     lua_register(m_L,"sendInput",general::sendInput);
     lua_register(m_L,"isIMEConverting",general::isIMEConverting);
@@ -17,15 +14,15 @@ void IPU::registerVMFunctions()
     lua_register(m_L,"SHR",intOp::shr);
     lua_register(m_L,"SHL",intOp::shr);
 
-    luaL_reg cdata[]=
-	{
-            {"new",cdata::_new},
-            {"size",cdata::size},
-            {"getPtr",cdata::getPtr},
-            {"rawGet",cdata::rawGet},
-            {"rawSet",cdata::rawSet},
-            {NULL,NULL}
-	};
+    luaL_reg cdata[]=	{
+            {"new", cdata::_new},
+            {"size", cdata::size},
+            {"getPtr", cdata::getPtr},
+            {"rawGet", cdata::rawGet},
+            {"rawSet", cdata::rawSet},
+            {NULL, NULL}
+    };
+    
     luaL_register(m_L, "cdata",cdata);
 
     luaL_newmetatable(m_L,"cdata");  //METAT|REGT

@@ -9,11 +9,7 @@ extern "C"
 }
 #pragma comment(lib,"lua5.1.lib")
 
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-    )
-{
+BOOL APIENTRY DllMain( HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved) {
     return TRUE;
 }
 
@@ -24,16 +20,14 @@ ZSLogFunction addLog=&_addLog;
     std::wstringstream str;                                 \
     str<<__FILE__<<" : "<<__LINE__<<" > "<<expr<<"\r\n";    \
     addLog(str.str());                                      \
-    }
+}
 
-ZSExport OnLoad(ZSLogFunction newAddLog)
-{
+ZSExport OnLoad(ZSLogFunction newAddLog) {
     addLog=newAddLog;	//assign log function
     return TRUE;
 }
 
-ZSExport HelloWorld(lua_State* L)
-{
+ZSExport HelloWorld(lua_State* L) {
     out("Hello World");
     return 0;
 }

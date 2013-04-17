@@ -5,12 +5,10 @@
 
 const int WM_NOTIFYICON = WM_USER+100;
 
-LRESULT CALLBACK IPU::mainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
+LRESULT CALLBACK IPU::mainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     IPU& This=IPU::getInstance();
 
-    switch (message)
-    {
+    switch (message) {
     case WM_IME_STARTCOMPOSITION:
 //        out("START COMPOSITION");
         This.m_isConverting=true;
@@ -21,8 +19,11 @@ LRESULT CALLBACK IPU::mainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
         break;
     case WM_INITDIALOG:
 
-        SendMessage(hWnd,WM_SETICON,ICON_SMALL,(LPARAM)LoadIcon(GetModuleHandle(NULL),MAKEINTRESOURCE(IDI_ZS)));
-
+        SendMessage(
+            hWnd,
+            WM_SETICON,
+            ICON_SMALL,
+            (LPARAM)LoadIcon(GetModuleHandle(NULL),MAKEINTRESOURCE(IDI_ZS)));
 
         IPU::getInstance().m_hMainWnd=hWnd;
         IPU::getInstance().m_hLog=GetDlgItem(hWnd,IDC_LOG);
@@ -30,7 +31,6 @@ LRESULT CALLBACK IPU::mainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
         SendMessage(IPU::getInstance().m_hLog,EM_SETLIMITTEXT,1024*1024*8,0);
 
         out("Window OK");
-
 
         {
             IPU::getInstance().m_nIcon.cbSize = sizeof( NOTIFYICONDATA) ;
@@ -51,16 +51,12 @@ LRESULT CALLBACK IPU::mainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 
         This.tryHook();
 
-        if(This.m_isLuaOK)
-        {
+        if(This.m_isLuaOK) {
             out(strings::version<<" Ready");
             SetTimer(hWnd,0,2000,0);
-        }
-        else
-        {
+        } else {
             out("/// Detected one or more error(s) ///");
         }
-		
 
         return TRUE;
 
@@ -72,14 +68,21 @@ LRESULT CALLBACK IPU::mainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
         RECT rConsole;
         GetWindowRect(This.m_hConsole,&rConsole);
 
-        MoveWindow(This.m_hConsole
-                   ,0
-                   ,height-(rConsole.bottom-rConsole.top)
-                   ,width
-                   ,16,TRUE);
-        MoveWindow(This.m_hLog,0,0,width,height-20,TRUE);
+        MoveWindow(
+            This.m_hConsole,
+            0, height-(rConsole.bottom-rConsole.top),
+            width, 16,
+            TRUE);
+        
+        MoveWindow(
+            This.m_hLog,
+            0,0,
+            width,height-20,
+            TRUE);
 
-        if(wParam==SIZE_MINIMIZED){    ShowWindow(hWnd,SW_HIDE);    }
+        if(wParam==SIZE_MINIMIZED){
+            ShowWindow(hWnd,SW_HIDE);
+        }
 
         break;
     }
@@ -87,36 +90,30 @@ LRESULT CALLBACK IPU::mainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
     case WM_NOTIFYICON:
     {
         const int wmTray=lParam;
-        switch(wmTray)
-        {
+        switch(wmTray) {
         case WM_LBUTTONDOWN:
         case WM_LBUTTONDBLCLK:
-				
-            if(IsWindowVisible(This.m_hMainWnd)==TRUE)
-            {
+            if(IsWindowVisible(This.m_hMainWnd)==TRUE) {
                 ShowWindow(This.m_hMainWnd,SW_HIDE);
-            }
-            else
-            {
+            } else {
                 ShowWindowAsync(This.m_hMainWnd,SW_SHOWNORMAL);
                 SetForegroundWindow(This.m_hMainWnd);
             }
-
             break;
         case WM_RBUTTONDOWN:
         {
             POINT pos;
             GetCursorPos(&pos);
 
-            TrackPopupMenu
-                (
-                    GetSubMenu
-                    (
+            TrackPopupMenu(
+                    GetSubMenu(
                         LoadMenu(GetModuleHandle(NULL),MAKEINTRESOURCE(IDP_TRAY))
-                        ,0
-                        )
-                    ,TPM_LEFTALIGN|TPM_RIGHTBUTTON,pos.x,pos.y,0,hWnd,NULL
-                    );
+                        ,0),
+                    TPM_LEFTALIGN|TPM_RIGHTBUTTON,
+                    pos.x, pos.y,
+                    0,
+                    hWnd,
+                    NULL);
             break;
         }
         }
@@ -128,8 +125,7 @@ LRESULT CALLBACK IPU::mainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
         const int wmId    = LOWORD(wParam);
         const int wmEvent = HIWORD(wParam);
 
-        switch (wmId)
-        {
+        switch (wmId) {
         case ID_FILE_RELOAD:
             out("RELOAD");
             This.unHook();
@@ -139,24 +135,29 @@ LRESULT CALLBACK IPU::mainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 
             This.loadModules();
 
-            if(luaL_dofile(This.m_L,"main.lua")!=0)
-            {
+            if(luaL_dofile(This.m_L,"main.lua")!=0) {
                 out("////////////////Error detail////////////////");
                 out(lua_tostring(This.m_L,-1));
-                out("////////////////////////////////////////////")
-                    }
-            else
-            {
+                out("////////////////////////////////////////////");
+            } else {
                 out("lua ok");
                 This.m_isLuaOK=true;
                 This.tryHook();
             }
             break;
         case IDM_SHOWKEYEDITOR:
-            CreateDialog(GetModuleHandle(NULL),MAKEINTRESOURCE(IDD_KEYEDITOR), hWnd, keyEditorProc);
+            CreateDialog(
+                GetModuleHandle(NULL),
+                MAKEINTRESOURCE(IDD_KEYEDITOR),
+                hWnd,
+                keyEditorProc);
             break;
         case IDM_ABOUT:
-            DialogBox(GetModuleHandle(NULL), MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, aboutProc);
+            DialogBox(
+                GetModuleHandle(NULL),
+                MAKEINTRESOURCE(IDD_ABOUTBOX),
+                hWnd,
+                aboutProc);
             break;
         case IDM_EXIT:
             This.unHook();
@@ -171,18 +172,16 @@ LRESULT CALLBACK IPU::mainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
         case IDC_LOG:
             break;
         case IDC_COMBO:
-            /*    switch(wmEvent)
-                  {
+            /*    switch(wmEvent) {
                       case CBN_KILLFOCUS
                   }*/
             //out(wmEvent);
-					
             break;
         case 1:	//Default ID
             TCHAR buff[513];
-            GetWindowText(GetDlgItem(hWnd,IDC_COMBO),buff,512);
+            GetWindowText(GetDlgItem(hWnd,IDC_COMBO), buff, 512);
             out(buff);
-            SetWindowText(IPU::getInstance().m_hConsole,_T(""));
+            SetWindowText(IPU::getInstance().m_hConsole, _T(""));
 //          updateLog();
 
             break;

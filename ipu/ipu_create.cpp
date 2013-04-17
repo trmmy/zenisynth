@@ -1,10 +1,13 @@
 #include "stdafx.h"
 #include "ipu.h"
 
-void IPU::create()
-{
+void IPU::create() {
 
-    _wfreopen_s(&m_hLogFile,L"stdout.txt" , L"w+t" , stdout);
+    _wfreopen_s(
+        &m_hLogFile,
+        L"stdout.txt" ,
+        L"w+t" ,
+        stdout);
 
     m_logThreadExitSign=false;
     _beginthread(&updateLog,0,NULL);
@@ -12,32 +15,28 @@ void IPU::create()
     out("create");
 
     m_L=lua_open();
-    if(m_L==NULL)
-    {
+    if(m_L==NULL) {
         out("lua_open failed");
-    }
-    else
-    {
+    } else {
         out("lua_open succeeded");
     }
 
     loadModules();
 
-    if(luaL_dofile(m_L,"main.lua")!=0)
-    {
+    if(luaL_dofile(m_L,"main.lua")!=0) {
         out("An error detected when loading main.lua");
         out("////////////////Error detail////////////////");
         out(lua_tostring(m_L,-1));
-        out("////////////////////////////////////////////")
-						
-            }
-    else
-    {
+        out("////////////////////////////////////////////");
+    } else {
         out("lua ok");
         m_isLuaOK=true;
     }
 
-    m_hAccelTable = LoadAccelerators(GetModuleHandle(NULL), MAKEINTRESOURCE(IDC_IPU));
+    m_hAccelTable
+        = LoadAccelerators(
+            GetModuleHandle(NULL),
+            MAKEINTRESOURCE(IDC_IPU));
 	
     createWindow();
 
