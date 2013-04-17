@@ -1,0 +1,10 @@
+LIBRARY	"system"
+SECTIONS
+    ZS_DATA READ WRITE SHARED
+    
+EXPORTS
+OnLoad
+OnFree
+forceKillActiveApp
+setIMEStatus
+getIMEStatus

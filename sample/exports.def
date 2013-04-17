@@ -1,0 +1,4 @@
+LIBRARY	"sample"
+EXPORTS
+OnLoad
+HelloWorld

@@ -1,0 +1,9 @@
+LIBRARY	"mouse"
+EXPORTS
+OnLoad
+setCursorForce
+setCursorForceX
+setCursorForceY
+setCursorFriction
+button
+wheel

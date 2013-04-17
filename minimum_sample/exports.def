@@ -1,0 +1,3 @@
+LIBRARY	"minimum_sample"
+EXPORTS
+OnLoad
