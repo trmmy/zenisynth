@@ -84,14 +84,14 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\work\Dev\Utility\ZeniSynth\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\tool\Programming\Lua\lua5_1_4_Win32_vc9_lib;$(LibraryPath);D:\tool\Programming\Lua\lua5_1_4_Win32_vc9_lib</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(LibraryPath)</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\tool\Programming\Lua\lua5_1_4_Win64_vc9_lib\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\tool\Programming\Lua\lua5_1_4_Win64_vc9_lib;$(LibraryPath)</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\tool\Programming\Lua\lua5_1_4_Win64_vc9_lib\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\tool\Programming\Lua\lua5_1_4_Win64_vc9_lib;$(LibraryPath)</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Tool\Programming\Lua\lua5_1_4_Win32_vc9_lib\include;D:\work\Dev\Utility\ZeniSynth\include;$(IncludePath);D:\Tool\Programming\Lua\lua5_1_4_Win32_vc9_lib\include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\lua5_1_4_Win32_lib\include;..\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\lua5_1_4_Win32_lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\lua5_1_4_Win32_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\lua5_1_4_Win64_lib\include;..\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\lua5_1_4_Win64_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\lua5_1_4_Win64_lib\include;..\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\lua5_1_4_Win64_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\lua5_1_4_Win32_lib\include;..\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

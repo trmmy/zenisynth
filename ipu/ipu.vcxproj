@@ -85,14 +85,14 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\tool\Programming\boost\boost_1_43_0;$(IncludePath);D:\tool\Programming\Lua\lua5_1_4_Win32_vc9_lib\include;D:\work\Dev\Utility\ZeniSynth\include</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Tool\Programming\boost\boost_1_43_0\stage\msvc10\x86;D:\tool\Programming\Lua\lua5_1_4_Win32_vc9_lib;$(LibraryPath)</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\tool\Programming\Lua\lua5_1_4_Win64_vc9_lib\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\tool\Programming\Lua\lua5_1_4_Win64_vc9_lib;$(LibraryPath)</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\tool\Programming\boost\boost_1_43_0;$(IncludePath);D:\Tool\Programming\Lua\lua5_1_4_Win64_vc9_lib\include;../include</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\tool\Programming\Lua\lua5_1_4_Win64_vc9_lib;D:\tool\Programming\boost\boost_1_43_0\stage\msvc10\x64;$(LibraryPath)</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Tool\Programming\boost\boost_1_43_0\stage\msvc10\x86;D:\tool\Programming\Lua\lua5_1_4_Win32_vc9_lib;$(LibraryPath)</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\tool\Programming\Lua\lua5_1_4_Win32_vc9_lib\include;$(IncludePath);D:\tool\Programming\Lua\lua5_1_4_Win32_vc9_lib\include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\boost_1_43_0;..\..\lua5_1_4_Win32_lib\include;..\include;$(IncludePath);</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\boost_1_43_0\stage\x86\lib;..\..\lua5_1_4_Win32_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\boost_1_43_0;..\..\lua5_1_4_Win64_lib\include;..\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\boost_1_43_0\stage\x64\lib;..\..\lua5_1_4_Win64_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\boost_1_43_0;..\..\lua5_1_4_Win64_lib\include;..\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\boost_1_43_0\stage\x64\lib;..\..\lua5_1_4_Win64_lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\boost_1_43_0\stage\x86\lib;..\..\lua5_1_4_Win32_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\boost_1_43_0;..\..\lua5_1_4_Win32_lib\include;..\include;$(IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -165,6 +165,7 @@ copy $(TargetDir)\$(TargetFileName) $(SolutionDir)\$(SolutionName)_$(Platform)\
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetDir)\$(TargetFileName) $(SolutionDir)\ZeniSynth_$(Platform)\$(TargetFileName)</Command>
