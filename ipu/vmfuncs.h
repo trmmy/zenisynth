@@ -7,29 +7,29 @@
 
 namespace VMFuncs
 {
-	namespace general
-	{
-		VMFunc(_out);
-		VMFunc(isIMEConverting);
-		VMFunc(sendInput);
-	};
+    namespace general
+    {
+        VMFunc(_out);
+        VMFunc(isIMEConverting);
+        VMFunc(sendInput);
+    };
 
-	namespace intOp
-	{
-		VMFunc(and);
-		VMFunc(or);
-		VMFunc(xor);
-		VMFunc(shr);
-		VMFunc(shl);
-	}
+    namespace intOp
+    {
+        VMFunc(and);
+        VMFunc(or);
+        VMFunc(xor);
+        VMFunc(shr);
+        VMFunc(shl);
+    }
 
-	namespace cdata
-	{
-		VMFunc(_new);
-		VMFunc(size);
-		VMFunc(getPtr);
-		VMFunc(rawGet);	//rawGet(ptr,size=4)
-		VMFunc(rawSet);	//rawSet(TNUMBER ptr,TNUMBER data,TNUMBER size=4)
-	};
+    namespace cdata
+    {
+        VMFunc(_new);
+        VMFunc(size);
+        VMFunc(getPtr);
+        VMFunc(rawGet);	//rawGet(ptr,size=4)
+        VMFunc(rawSet);	//rawSet(TNUMBER ptr,TNUMBER data,TNUMBER size=4)
+    };
 
 };

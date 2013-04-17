@@ -4,7 +4,7 @@
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved
-					 )
+    )
 {
     return TRUE;
 }
@@ -14,6 +14,6 @@ ZSLogFunction addLog=&_addLog;
 
 ZSExport OnLoad(ZSLogFunction newAddLog)
 {
-	addLog=newAddLog;	//assign log function
-	return TRUE;
+    addLog=newAddLog;  //assign log function
+    return TRUE;
 }

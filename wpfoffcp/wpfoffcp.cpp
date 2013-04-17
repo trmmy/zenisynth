@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
         WCHAR wdestfile[1024];
         MultiByteToWideChar(CP_ACP, 0, 
-            destfile, -1, wdestfile, 1024 * sizeof(WCHAR));
+                            destfile, -1, wdestfile, 1024 * sizeof(WCHAR));
         
         if(pWfp(0, wdestfile, -1))
             throw 3;
