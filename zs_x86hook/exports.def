@@ -1,0 +1,6 @@
+LIBRARY	"zs_x86hook"
+SECTIONS
+    ZS_DATA READ WRITE SHARED
+EXPORTS
+setHook
+unHook
