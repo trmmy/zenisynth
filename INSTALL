@@ -1,0 +1,63 @@
+* How to build
+
+1. install Visual Studio 2012 Express Edition
+
+2. get zenisynth
+
+ > git clone https://github.com/trmmy/zenisynth
+
+3. get lua5_1_4
+
+ download from http://sourceforge.net/projects/luabinaries/files/5.1.4/Windows%20Libraries/lua5_1_4_Win32_dll8_lib.zip/download for Win32
+ download from http://sourceforge.net/projects/luabinaries/files/5.1.4/Windows%20Libraries/lua5_1_4_Win64_dll8_lib.zip/download for Win64
+ 
+4. get boost1_43_0
+
+ download from http://sourceforge.net/projects/boost/files/boost/1.43.0/boost_1_43_0.zip/download
+
+5. inflate and put them as follows
+
+ +-+-boost_1_43_0            # download from http://sourceforge.net/projects/boost/files/boost/1.43.0/boost_1_43_0.zip/download
+ | |--bin.v2
+ | |--boost
+ | |-- ...
+ | |--tools
+ | |-- ...
+ | |--bootstrap.bat
+ | +-- ...
+ |
+ |-+-lua5_1_4_Win32_lib      # download from http://sourceforge.net/projects/luabinaries/files/5.1.4/Windows%20Libraries/lua5_1_4_Win32_dll8_lib.zip/download
+ | |--include
+ | |--lua5_1.dll
+ | |--lua5_1.dll.manifest
+ | +--lua5_1.lib
+ |
+ |-+-lua5_1_4_Win64_lib      # download from http://sourceforge.net/projects/luabinaries/files/5.1.4/Windows%20Libraries/lua5_1_4_Win64_dll8_lib.zip/download
+ | |--include
+ | |--lua5_1.dll
+ | |--lua5_1.dll.manifest
+ | +--lua5_1.lib
+ |
+ +---zenisynth               # clone of https://github.com/trmmy/zenisynth
+   |--...
+   |--ZeniSynth.sln
+   +--...
+
+6. prepare boost
+
+ > cd boost_1_43_0
+ > git init
+ > git remote add origin https://github.com/trmmy/boost_1_43_0_with_vs2012
+ > git pull --rebase origin master
+ > git reset --hard 048271
+ > bootstrap.bat
+ > bjam.exe toolset=msvc11.0 --stagedir=stage\x86 --address-model=32 variant=debug,release runtime-link=static link=static threading=multi --with-filesystem --with-regex
+ > bjam.exe toolset=msvc11.0 --stagedir=stage\x64 --address-model=64 variant=debug,release runtime-link=static link=static threading=multi --with-filesystem --with-regex
+
+7. build zenisynth
+
+ > %VS110COMNTOOLS%\..\..\VC\vcvarsall.bat
+ > msbuild
+
+The ZeniSynth.exe for Win32 can be found under zenisynth\ZeniSynth_Win32
+and ZeniSynth.exe for Win64 can be found under zenisynth\ZeniSynth_x64
