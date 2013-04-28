@@ -1,0 +1,10 @@
+Debug
+Release
+x64
+*.sdf
+*.suo
+*.exe
+*.dll
+*.user
+ZeniSynth_*/driver
+ZeniSynth_*/modules
